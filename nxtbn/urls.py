@@ -18,13 +18,11 @@ import importlib
 import sys
 from django.http import HttpResponse
 from django.conf import settings
-from django.urls import re_path, path
+from django.urls import re_path, path, include
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework.permissions import AllowAny
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
 from django.views.generic import TemplateView
+
+from nxtbn.swagger_views import DASHBOARD_API_DOCS_SCHEMA_VIEWS, STOREFRONT_API_DOCS_SCHEMA_VIEWS, api_docs
 
 
 
@@ -48,12 +46,14 @@ admin.site.index_title = "nxtbn Admin"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('nxtbn.home.urls')),
-    # path('', include('django.contrib.auth.urls')),
+    path('', include('nxtbn.seo.urls')),
 
+    path('product/', include('nxtbn.product.urls')),
     path('users/', include('nxtbn.users.urls')),
 
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', TemplateView.as_view(template_name='account/profile.html'), name='account_profiles'),
+
 
     # API
     path('user/storefront/api/', include('nxtbn.users.api.storefront.urls')),
@@ -71,11 +71,11 @@ urlpatterns = [
     path('filemanager/storefront/api/', include('nxtbn.filemanager.api.storefront.urls')),
     path('filemanager/dashboard/api/', include('nxtbn.filemanager.api.dashboard.urls')),
 
-    path('filemanager/storefront/api/', include('nxtbn.filemanager.api.storefront.urls')),
-    path('filemanager/dashboard/api/', include('nxtbn.filemanager.api.dashboard.urls')),
-
     path('order/storefront/api/', include('nxtbn.order.api.storefront.urls')),
     path('order/dashboard/api/', include('nxtbn.order.api.dashboard.urls')),
+
+    path('product/storefront/api/', include('nxtbn.product.api.storefront.urls')),
+    path('product/dashboard/api/', include('nxtbn.product.api.dashboard.urls')),
 
     path('payment/storefront/api/', include('nxtbn.payment.api.storefront.urls')),
     path('payment/dashboard/api/', include('nxtbn.payment.api.dashboard.urls')),
@@ -84,22 +84,13 @@ urlpatterns = [
     path('seo/dashboard/api/', include('nxtbn.seo.api.dashboard.urls')),
 ]
 
-
-API_INFO = openapi.Info(
-    title="nxtbn API",
-    default_version="v1",
-    description="API documentation for nxtbn App",
-)
-
-API_DOCS_SCHEMA_VIEWS = get_schema_view(
-    API_INFO,
-    public=True,
-    permission_classes=(AllowAny,),
-)
-
-
 urlpatterns += [
-    path("api-playground/", API_DOCS_SCHEMA_VIEWS.with_ui("swagger", cache_timeout=0), name="api_playground")
+    path('docs/', api_docs, name='api_docs'),
+    path("docs-dashboard-swagger/", DASHBOARD_API_DOCS_SCHEMA_VIEWS.with_ui("swagger", cache_timeout=0), name="docs_dashboard_swagger"),
+    path("docs-storefront-swagger/", STOREFRONT_API_DOCS_SCHEMA_VIEWS.with_ui("swagger", cache_timeout=0), name="docs_storefront_swagger"),
+
+    path("docs-dashboard-redoc/", DASHBOARD_API_DOCS_SCHEMA_VIEWS.with_ui("redoc", cache_timeout=0), name="docs_dashboard_redoc"),
+    path("docs-storefront-redoc/", STOREFRONT_API_DOCS_SCHEMA_VIEWS.with_ui("redoc", cache_timeout=0), name="docs_storefront_redoc")
 ]
 
 

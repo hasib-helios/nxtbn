@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
-from . import views as home_views
+from nxtbn.home import views as home_views
 
 
 urlpatterns = [

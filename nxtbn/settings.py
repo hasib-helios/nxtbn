@@ -19,6 +19,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
+
 import sys
 from dotenv import load_dotenv
 
@@ -84,7 +86,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 LOCAL_APPS = [
@@ -102,6 +105,7 @@ LOCAL_APPS = [
     'nxtbn.filemanager',
     'nxtbn.vendor',
     'nxtbn.cart',
+    'nxtbn.gift_card',
     'nxtbn.post',
 ]
 
@@ -294,8 +298,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_simplejwt.authentication.JWTAuthentication', # https://django-rest-framework-simplejwt.readthedocs.io/en/latest/getting_started.html
+        'nxtbn.users.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -344,5 +347,12 @@ PLUGIN_UPLOAD_DIR = 'nxtbn.pluggins/'
 
 # NXBTN payment base payment getways configuration
 PAYMENT_GATEWAYS = {
-    # "stripe": "nxtbn.payment.payment_gateway.StripeGateway",
+    "stripe": "nxtbn.stripe_getway.StripePaymentGateway",
+}
+
+NXTBN_JWT_SETTINGS = {
+    'SECRET_KEY': get_env_var("JWT_SECRET_KEY", SECRET_KEY), # default django's secret key
+    'ALGORITHM': 'HS256',
+    'ACCESS_TOKEN_EXPIRATION_SECONDS': timedelta(hours=1),  # Default to 1 hour
+    'REFRESH_TOKEN_EXPIRATION_SECONDS': timedelta(days=1),  # 1 day for refresh token
 }
