@@ -1,5 +1,7 @@
 # 🌎 Next Billion Native Commerce (nxtbn)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0416c50cba5d42f9a856cb37c9d86023)](https://app.codacy.com/gh/hasib-helios/nxtbn?utm_source=github.com&utm_medium=referral&utm_content=hasib-helios/nxtbn&utm_campaign=Badge_Grade)
+
 > **⚠️ Warning**: This project is currently in development and not stable. We're working hard to make it better, and we'll release a stable version soon. Your feedback and contributions are welcome to help us improve. If you have any suggestions or find any issues, please email us at [feedback@bytenyx.com](mailto:feedback@bytenyx.com).
 
 ![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)
