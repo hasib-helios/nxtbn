@@ -3,7 +3,7 @@
 > **⚠️ Warning**: This project is currently in development and not stable. We're working hard to make it better, and we'll release a stable version soon. Your feedback and contributions are welcome to help us improve. If you have any suggestions or find any issues, please email us at [feedback@bytenyx.com](mailto:feedback@bytenyx.com).
 
 ![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)
-![Test Coverage](https://img.shields.io/codecov/c/github/nxtbn-com/nxtbn)  <!-- CodeCov test coverage -->
+[![codecov](https://codecov.io/gh/hasib-helios/nxtbn/graph/badge.svg?token=OTV7K2LBE6)](https://codecov.io/gh/hasib-helios/nxtbn) <!-- CodeCov test coverage -->
 
 ![Code Quality](https://img.shields.io/codacy/grade/nxtbn-com/nxtbn)  <!-- Codacy or Code Climate code quality -->
 ![Django Version](https://img.shields.io/badge/Django-4.2-blue)  <!-- Supported Django versions -->
