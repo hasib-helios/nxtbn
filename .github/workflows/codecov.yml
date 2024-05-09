@@ -9,11 +9,9 @@ jobs:
     runs-on: ubuntu-latest  # Replace with your preferred runner
     steps:
     - uses: actions/checkout@main
-    - uses: codecov/codecov-action@v4
+
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
       with:
-        fail_ci_if_error: true # optional (default = false)
-        files: ./coverage1.xml,./coverage2.xml # optional
-        flags: unittests # optional
-        name: codecov-umbrella # optional
         token: 60d09c03-55dd-443f-984a-0bed2c7df9d2
-        verbose: true # optional (default = false)
