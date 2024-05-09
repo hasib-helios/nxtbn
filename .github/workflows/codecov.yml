@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest  # Replace with your preferred runner
     steps:
       - uses: actions/checkout@v4  # Checkout your code repository
-      - name: Install codecov
-        run: |
-           curl -Os https://cli.codecov.io/latest/linux/codecov
-            chmod +x codecov
-            ./codecov --verbose upload-process --fail-on-error -t ${{ secrets.CODECOV_TOKEN }} -n 'service'-${{ github.run_id }} -F service -f coverage-service.xml
-
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          flags: smart-tests
+          verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
