@@ -8,11 +8,12 @@ jobs:
   upload_coverage:
     runs-on: ubuntu-latest  # Replace with your preferred runner
     steps:
-      - uses: actions/checkout@v4  # Checkout your code repository
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          flags: smart-tests
-          verbose: true
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - uses: actions/checkout@main
+    - uses: codecov/codecov-action@v4
+      with:
+        fail_ci_if_error: true # optional (default = false)
+        files: ./coverage1.xml,./coverage2.xml # optional
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        token: ${{ secrets.CODECOV_TOKEN }} # required
+        verbose: true # optional (default = false)
