@@ -11,9 +11,7 @@ jobs:
       - uses: actions/checkout@v4  # Checkout your code repository
       - name: Install codecov
         run: |
-          curl -fsSL https://codecov.io/bash | bash  # Install the Codecov CLI
-      - name: Upload coverage report
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}  # Replace with your secret name
-        run: codecov -t $CODECOV_TOKEN -f ./coverage.xml  # Replace with your report path
+           curl -Os https://cli.codecov.io/latest/linux/codecov
+            chmod +x codecov
+            ./codecov --verbose upload-process --fail-on-error -t ${{ secrets.CODECOV_TOKEN }} -n 'service'-${{ github.run_id }} -F service -f coverage-service.xml
 
