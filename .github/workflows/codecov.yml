@@ -5,16 +5,15 @@ on:
   pull_request:
 
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    
+  upload_coverage:
+    runs-on: ubuntu-latest  # Replace with your preferred runner
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v4.0.1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - uses: actions/checkout@v4  # Checkout your code repository
+      - name: Install codecov
+        run: |
+          curl -fsSL https://codecov.io/bash | bash  # Install the Codecov CLI
+      - name: Upload coverage report
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}  # Replace with your secret name
+        run: codecov -t $CODECOV_TOKEN -f ./coverage.xml  # Replace with your report path
+
