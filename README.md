@@ -3,7 +3,7 @@
 > **⚠️ Warning**: This project is currently in development and not stable. We're working hard to make it better, and we'll release a stable version soon. Your feedback and contributions are welcome to help us improve. If you have any suggestions or find any issues, please email us at [feedback@bytenyx.com](mailto:feedback@bytenyx.com).
 
 ![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)
-[![codecov](https://codecov.io/gh/hasib-helios/nxtbn/graph/badge.svg?token=OTV7K2LBE6)](https://codecov.io/gh/hasib-helios/nxtbn)
+[![codecov](https://codecov.io/gh/hasib-helios/nxtbn/branch/code_covarage/graph/badge.svg?token=OTV7K2LBE6)](https://codecov.io/gh/hasib-helios/nxtbn)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fa116437a09f45beb2c87556cfe95207)](https://app.codacy.com/gh/hasib-helios/nxtbn/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)  <!-- Codacy or Code Climate code quality -->
 ![Django Version](https://img.shields.io/badge/Django-4.2-blue)  <!-- Supported Django versions -->
